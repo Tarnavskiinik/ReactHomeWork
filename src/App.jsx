@@ -1,38 +1,23 @@
-import React, { useState } from 'react';
-import Smiley from './smile/Smiley';
+import React, { useState } from "react";
+import EmojiList from "./smile/EmojiList";
+import ShowResultsButton from "./smile/ShowResultsButton";
+import "./App.css";
 
-function App() {
-    const [counts, setCounts] = useState({});
-
-    const handleSmileyClick = (name) => {
-        setCounts((prevCounts) => {
-            const count = prevCounts[name] || 0;
-            return {
-                ...prevCounts,
-                [name]: count + 1,
-            };
-        });
-    };
-
-    const handleShowResultsClick = () => {
-        const winner = Object.entries(counts).reduce((prev, [name, count]) => {
-            if (count > prev.count) {
-                return { name, count };
-            }
-            return prev;
-        }, { name: '', count: -1 });
-        alert(`The winner is ${winner.name} with ${winner.count} votes!`);
-    };
+const App = () => {
+    const [emojiClicks, setEmojiClicks] = useState({
+        smiling: 0,
+        heart: 0,
+        crying: 0,
+        angry: 0,
+        laughing: 0,
+    });
 
     return (
         <div>
-            <h1>Smileys</h1>
-            <Smiley name="happy" image="/happy.png" onClick={() => handleSmileyClick('happy')} />
-            <Smiley name="sad" image="/sad.png" onClick={() => handleSmileyClick('sad')} />
-            <Smiley name="angry" image="/angry.png" onClick={() => handleSmileyClick('angry')} />
-            <button onClick={handleShowResultsClick}>Show Results</button>
+            <EmojiList emojiClicks={emojiClicks} setEmojiClicks={setEmojiClicks} />
+            <ShowResultsButton emojiClicks={emojiClicks} />
         </div>
     );
-}
+};
 
 export default App;
