@@ -1,24 +1,13 @@
-import React, { useState } from "react";
-import EmojiList from "./smile/EmojiList";
-import ShowResultsButton from "./smile/ShowResultsButton";
-import "./App.css";
+import React from 'react';
+import TodoList from './todo/Todo';
+import './App.css'
 
-const App = () => {
-    const [emojiClicks, setEmojiClicks] = useState({
-        smiling: 0,
-        heart: 0,
-        crying: 0,
-        angry: 0,
-        laughing: 0,
-    });
-
+function App() {
     return (
-        <div>
-            <EmojiList emojiClicks={emojiClicks} setEmojiClicks={setEmojiClicks} />
-            <ShowResultsButton emojiClicks={emojiClicks} />
+        <div className="App">
+            <TodoList />
         </div>
     );
-};
+}
 
 export default App;
-
