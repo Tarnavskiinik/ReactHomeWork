@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import EmojiList from "./smile/EmojiList";
-import ShowResultsButton from "./smile/ShowResultsButton";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import AlbumList from "./pages/AlbumList";
+import PhotoList from "./pages/PhotoList";
+import UserList from "./pages/UserList";
 
 const App = () => {
-    const [emojiClicks, setEmojiClicks] = useState({
-        smiling: 0,
-        heart: 0,
-        crying: 0,
-        angry: 0,
-        laughing: 0,
-    });
-
     return (
-        <div>
-            <EmojiList emojiClicks={emojiClicks} setEmojiClicks={setEmojiClicks} />
-            <ShowResultsButton emojiClicks={emojiClicks} />
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<UserList />} />
+                <Route path="/albums/:userId" element={<AlbumList />} />
+                <Route path="/photos/:albumId" element={<PhotoList />} />
+            </Routes>
+        </Router>
     );
 };
 
