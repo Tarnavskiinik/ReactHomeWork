@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import todoReducer from './todo/Reducers';
 import App from './App';
+import { weatherReducer } from './theweather/weather';
 
-const store = createStore(todoReducer);
+const rootReducer = combineReducers({
+    weather: weatherReducer,
+});
+const store = createStore(rootReducer);
 
 ReactDOM.render(
     <Provider store={store}>
